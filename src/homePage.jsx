@@ -1,7 +1,7 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import './homePage.css';
-// import {db} from './firebaseConfig';
-// import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import {db} from './firebaseConfig';
+import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 function HomePage (){
 
     const [text, setText] = useState("");
@@ -20,24 +20,60 @@ function HomePage (){
     //     // }
     // }, [todo]);
 
-    const addTodo = () =>{
+    useEffect(()=>{
+        const fetchTodos = async() => {
+            const querySnapshot = await getDocs(collection(db, "todos"));
+            const todos = [];
+            querySnapshot.forEach((document) => {
+                todos.push({ id: document.id, ...document.data() });
+            });
+            setTodo(todos);
+        };
+        fetchTodos();
+    },[]);
+
+    const addTodo = async () =>{
         if(text.trim() === "") return;
         const newTodo    = {
-            id: Date.now(),
             text: text,
             completed: false,
         };
-        setTodo([...todo, newTodo]);
+        await addDoc(collection(db, "todos"), newTodo);
+        // setTodo([...todo, newTodo]);
         setText("");
-      } 
-    const markDone = (id) => {
-        setTodo(todo.map(item => item.id === id ? {...item,completed: !item.completed}: item
-
-        ))
+        //refresh todos
+        const querySnapshot = await getDocs(collection(db, "todos"));
+        const todos = [];
+        querySnapshot.forEach((document) => {
+            todos.push({ id: document.id, ...document.data() });
+        });
+        setTodo(todos);
     }
 
-    const deleteTask = (id) => {
-        setTodo(todo.filter(item => item.id !== id))
+    // Mark as done in Firestore
+    const markDone = async (id, completed) => {
+        const todoRef = doc(db, "todos", id);
+        await updateDoc(todoRef, { completed: !completed });
+        // Refresh todos
+        const querySnapshot = await getDocs(collection(db, "todos"));
+        const todos = [];
+        querySnapshot.forEach((document) => {
+            todos.push({ id: document.id, ...document.data() });
+        });
+        setTodo(todos);
+    };
+
+    const deleteTask = async (id) => {
+        console.log("Deleting id:", id); // Add this
+        await deleteDoc(doc(db, "todos", id));
+        // Refresh todos
+        const querySnapshot = await getDocs(collection(db, "todos"));
+        const todos = [];
+        querySnapshot.forEach((document) => {
+            todos.push({ id: document.id, ...document.data() });
+        });
+        setTodo(todos);
+
     }
     return(
         <div className="container">
@@ -52,14 +88,14 @@ function HomePage (){
                 <h4>Your Tasks</h4>
                 <table className="todo-table">
                     <tbody>
-                        {todo.map((todo)=>(
-                            <tr key={todo.id} style={{borderBottom: "1px solid #ccc"}}>
-                                <td style={{width: "60%", textDecoration: todo.completed ? "line-through": "none"}}>
-                                    {todo.text}
+                        {todo.map((todoItem)=>(
+                            <tr key={todoItem.id} style={{borderBottom: "1px solid #ccc"}}>
+                                <td style={{width: "60%", textDecoration: todoItem.completed ? "line-through": "none"}}>
+                                    {todoItem.text}
                                 </td>
-                                <td style={{ textAlign: "right" }}><button onClick={() => markDone(todo.id)}>
-                                    {todo.completed ? "Not Done" : "Done"}</button></td>
-                                <td><button style={{backgroundColor: "Red"}} onClick={() => deleteTask(todo.id)}>Delete</button></td>
+                                <td style={{ textAlign: "right" }}><button onClick={() => markDone(todoItem.id, todoItem.completed)}>
+                                    {todoItem.completed ? "Not Done" : "Done"}</button></td>
+                                <td><button style={{backgroundColor: "Red"}} onClick={() => deleteTask(todoItem.id)}>Delete</button></td>
                             </tr>
                         ))}
                     </tbody>
