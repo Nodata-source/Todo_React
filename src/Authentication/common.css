@@ -1,0 +1,61 @@
+.container {
+  background-color: #fff;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.centerContent {
+  background-color: rgb(137, 207, 242);
+  height: 40%;
+  width: 30%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;  
+}
+
+.inputField {
+  width: 90%;
+  height: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: black;
+  padding: 2px;
+}
+.label {
+  color: black;
+  margin-bottom: 2px;
+  margin-top: 5px;
+  width: 92%;
+}
+
+button {
+  background-color: blue;
+  margin-top: 10px;
+}
+
+button:hover{
+  background-color: rgb(60, 60, 244);
+}
+
+.register{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register-label {
+    color: black;
+    font-weight: 500;
+}
+
+.register a {
+    padding-left: 8px;
+    font-weight: bold;
+}
