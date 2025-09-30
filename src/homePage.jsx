@@ -1,7 +1,7 @@
 import { useState} from "react";
 import './homePage.css';
-import {db} from './firebaseConfig';
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+// import {db} from './firebaseConfig';
+// import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 function HomePage (){
 
     const [text, setText] = useState("");
