@@ -1,3 +1,20 @@
+.container {
+  background-color: #fff;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+ align-items: flex-start; 
+  justify-content: flex-start;
+  flex-direction: row;
+  
+}
+
+.mainContent {
+    width: 70%;
+    /* background-color: green; */
+}
 .inputContainerdiv {
 width: 100%;
 height: 100%;
@@ -5,6 +22,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: row;
+/* background-color: green; */
 }
 
 .inputContainer {
@@ -63,4 +81,26 @@ flex-direction: row;
 
 .todo-table td:hover {
   background: #f0f0f0;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  height: 100vh;
+  /* justify-content: space-between; */
+}
+
+.sideBar svg {
+  margin: 10px 0 0 10px; 
+}
+
+.settings-submenu {
+  /* background: #fff; */
+  color: black;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 10px;
+  cursor: pointer;
 }
