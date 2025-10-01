@@ -12,12 +12,13 @@
 }
 
 .mainContent {
-    width: 70%;
+    width: 100%;
+    height: 100vh;
     /* background-color: green; */
 }
 .inputContainerdiv {
 width: 100%;
-height: 100%;
+/* height: 100%; */
 display: flex;
 justify-content: center;
 align-items: center;
@@ -135,3 +136,17 @@ flex-direction: row;
   color: #fff !important;           /* Selected date text */
 }
 
+.userProfileIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 100;
+}
+
+.userProfile {
+    background-color: yellow;
+    color: black;
+}

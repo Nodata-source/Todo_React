@@ -1,4 +1,4 @@
-.container {
+.authContainer {
   background-color: #fff;
   min-height: 100vh;
   width: 100vw;
@@ -8,6 +8,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
+  position: fixed; /* Add this */
+  top: 0;
+  left: 0;
 }
 .centerContent {
   background-color: rgb(137, 207, 242);

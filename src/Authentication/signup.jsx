@@ -1,16 +1,23 @@
 // import { useState } from 'react'
 import './common.css';
 import { useNavigate } from 'react-router-dom';
+import { db } from "../firebaseConfig";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+} from "firebase/firestore";
 function Signup() {
     const navigate = useNavigate();
   
   return (
     <>
-      <div className='container'>
+      <div className='authContainer'>
         <div className='centerContent'>
           <h4 className='label'>Email Address</h4>
           <input type='text' placeholder='Enter your Email' className='inputField'/>
-          <h4 className='label'>Password</h4>
+          <h4 className='label'>UserName</h4>
           <input type='text' placeholder='Enter your username' className='inputField'/>
           <h4 className='label'>Password</h4>
           <input type='text' placeholder='Enter your password' className='inputField'/>

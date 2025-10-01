@@ -3,6 +3,7 @@ import { FaBars } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa"; // Font Awesome icon
 import { FaUser } from "react-icons/fa"; // User icon
 import { FiSettings } from "react-icons/fi"; // Settings icon
+import { FaSignOutAlt } from "react-icons/fa";
 import "./homePage.css";
 import { db } from "./firebaseConfig";
 import {
@@ -24,6 +25,7 @@ function HomePage() {
   const [backgroundColor, setBackgroundColor] = useState();
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showUserProfile, setShowUserProfile] = useState(false);
 
   // useEffect(()=>{
   //     const savedItems = localStorage.getItem("todos");
@@ -169,16 +171,27 @@ function HomePage() {
 
                 {/* <div className="changeColor" onClick={()=> chooseBackgroundColor}></div> */}
                 <div>Preferences</div>
-                <div>Logout</div>
               </div>
             )}
-
-            <FaUser size={32} style={{ cursor: "pointer", color: "black" }} />
           </>
         )}
       </div>
       <div className="mainContent">
         <h4 style={{ color: "black" }}>Todo List App</h4>
+        <div className="userProfileIcon" onClick={()=> setShowUserProfile(!showUserProfile)}>
+            <FaUser size={32} style={{ cursor: "pointer", color: "black" }} />
+            {showUserProfile && <>
+            <div className="userProfile">
+                <p style={{color: "black"}}>Hello</p>
+                <div>Hello! Your name</div>
+                <div>Your Email</div>
+                <div>Hello! Your name</div>
+                <div className="signout">
+                    <FaSignOutAlt/>
+                </div>
+            </div>
+            </>}
+        </div>
         <div className="inputContainerdiv">
           <input
             className="inputContainer"
