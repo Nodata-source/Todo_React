@@ -88,11 +88,13 @@ flex-direction: row;
   flex-direction: column;
   gap: 25px;
   height: 100vh;
+  overflow-y: auto;
   /* justify-content: space-between; */
 }
 
 .sideBar svg {
   margin: 10px 0 0 10px; 
+  flex-shrink: 0;
 }
 
 .settings-submenu {
@@ -104,3 +106,32 @@ flex-direction: row;
   margin: 0 0 0 10px;
   cursor: pointer;
 }
+
+.calendarStyle{
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 5px;
+  margin: 10px;
+}
+
+/* Change calendar button background and text color */
+.react-calendar__tile {
+  background: #fff ;      /* New background color */
+  color: #065ea3 ;        /* New text color */
+  border-radius: 8px;
+  border: none;
+}
+
+/* Change hover and active state */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #e0e0e0 !important;
+  color: #065ea3 !important;
+}
+
+.react-calendar__tile--active {
+  background: #065ea3 !important;   /* Selected date background */
+  color: #fff !important;           /* Selected date text */
+}
+
